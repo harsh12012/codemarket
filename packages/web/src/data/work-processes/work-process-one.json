@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "title": "Podcast Studio",
+    "excerpt": "If you want to create a voice for your business Postcast studio cost around $80/hr. Our state of the art Pocast studio is FREE for our members. If you want to use our podcast studio to build a voice for  for your business and do not know how to use podcast studio, we offer workshops on how to use podcast studio",
+    "icon": "/images/icons/8.png",
+    "url": "/contact"
+  },
+  {
+    "id": "2",
+    "title": "Photo/Video Studio",
+    "excerpt": "There are many variations of passages of Lorem Ipsum available.",
+    "icon": "/images/icons/9.png",
+    "url": "/contact"
+  },
+  {
+    "id": "3",
+    "title": "AR/VR Studio",
+    "excerpt": "There are many variations of passages of Lorem Ipsum available.",
+    "icon": "/images/icons/10.png",
+    "url": "/contact"
+  },
+  {
+    "id": "4",
+    "title": "Printing",
+    "excerpt": "There are many variations of passages of Lorem Ipsum available.",
+    "icon": "/images/icons/8.png",
+    "url": "/contact"
+  },
+  {
+    "id": "5",
+    "title": "3 Locations",
+    "excerpt": "There are many variations of passages of Lorem Ipsum available.",
+    "icon": "/images/icons/9.png",
+    "url": "/contact"
+  },
+  {
+    "id": "6",
+    "title": "Conference Rooms",
+    "excerpt": "There are many variations of passages of Lorem Ipsum available.",
+    "icon": "/images/icons/10.png",
+    "url": "/contact"
+  }
+]

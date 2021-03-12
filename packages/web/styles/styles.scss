@@ -1,0 +1,256 @@
+// Common
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-parkyourself {
+  color: #27aae1;
+}
+
+// Parking Details
+.parking-detail-img {
+  width: 60%;
+}
+
+@media (max-width: 768px) {
+  .parking-detail-img {
+    width: 100% !important;
+  }
+}
+
+.mainmenu {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  list-style: outside none none;
+  li {
+    // line-height: 42px;
+    margin: 0 21px;
+    a {
+      font-family: Source Sans Pro;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: capitalize;
+      color: #000;
+    }
+  }
+}
+
+.mainmenu {
+  li {
+    &.drop {
+      position: relative;
+      ul {
+        &.dropdown {
+          position: absolute;
+          right: 10%;
+          top: 107%;
+          // left: 0;
+          z-index: 9999999;
+          visibility: hidden;
+          width: 250px;
+          padding: 12px 0;
+          transition: all 0.5s ease 0s;
+          opacity: 0;
+          background: #fff none repeat scroll 0 0;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+          border-radius: 20px;
+          li {
+            line-height: 29px;
+            margin: 0;
+            padding: 5px 14px;
+            &.nav-li {
+              &:hover {
+                background-color: #eee;
+              }
+            }
+            a {
+              font-weight: 600;
+              line-height: 29px;
+              transition: all 0.3s ease 0s;
+              text-transform: capitalize;
+              color: #444;
+              // &:hover {
+              //   // padding-left: 3px;
+              //   color: #1752b4;
+              // }
+            }
+          }
+        }
+      }
+      &:hover ul.dropdown {
+        top: 100%;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Add lisitng
+.add-listing-menu {
+  ol {
+    padding-left: 20px;
+  }
+  .add-listing-arrow {
+    display: none;
+  }
+  li {
+    // background-color: yellow;
+    display: flex;
+    // align-items: flex-end;
+    // align-content: flex-end;
+    // justify-content: center;
+    padding-left: 10px;
+    align-items: center;
+    min-height: 35px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    // color: rgb(60, 56, 56);
+    cursor: pointer;
+    &:hover {
+      color: #27aae1;
+      font-size: 17px;
+      .add-listing-arrow {
+        display: inline;
+      }
+    }
+    &.active-menu-item {
+      color: #27aae1;
+      font-size: 17px;
+      .add-listing-arrow {
+        display: inline;
+      }
+    }
+    &.sub-menu-heading {
+      font-weight: bold !important;
+      font-size: 20px;
+      padding-left: 0;
+      color: #0060eb !important;
+      text-transform: capitalize;
+    }
+  }
+  .incomplete-icon {
+    font-size: 20px;
+    color: red;
+    margin-top: -3px;
+    margin-left: 3px;
+  }
+}
+
+// Admin
+.admin-layout {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    transition: 0.5s;
+  }
+  li a {
+    cursor: pointer;
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  li a.active {
+    background-color: #27aae1;
+    color: white;
+  }
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  .admin-div {
+    margin-left: 15%;
+    padding: 1px 16px;
+    // min-height: 100vh;
+  }
+  .sidebar-sub-menu {
+    // padding-left: 10px;
+    font-size: 15px;
+    a {
+      padding: 5px 0px 5px 26px;
+    }
+    a.active2 {
+      background-color: #afd8e9;
+      // color: red;
+    }
+  }
+  .admin-menu-toggle {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .admin-layout {
+    ul {
+      // display: none;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+    }
+    .admin-menu-ul {
+      width: auto;
+    }
+    .admin-div {
+      margin-left: 0;
+    }
+    .admin-menu-toggle {
+      display: block;
+    }
+  }
+}
+
+.admin-users {
+  .user-picture-div {
+    width: 70px;
+    margin-right: 10px;
+  }
+  .user-picture {
+    border-radius: 50px;
+    overflow: hidden;
+    width: 70px;
+  }
+}
+
+.admin-fee {
+  .fee-input {
+    width: 40px;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 5px;
+    margin-left: 3px;
+  }
+}
+
+// Inbox
+
+.chat-box {
+  margin-top: -50px;
+  margin-bottom: -100px;
+  background-color: #ecf0f1;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // align-items: flex-end;
+}
+
+.owner-inbox-card {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 20px;
+  .icon {
+    font-size: 35px;
+  }
+}

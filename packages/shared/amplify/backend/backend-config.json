@@ -1,0 +1,31 @@
+{
+    "auth": {
+        "parkyourself30e274ad30e274ad": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "customAuth": false
+        }
+    },
+    "storage": {
+        "contentstorage": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "analytics": {
+        "parkyourself": {
+            "service": "Pinpoint",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "notifications": {
+        "parkyourself": {
+            "service": "Pinpoint",
+            "channels": [
+                "APNS",
+                "FCM"
+            ]
+        }
+    }
+}

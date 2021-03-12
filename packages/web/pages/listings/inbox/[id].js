@@ -1,0 +1,9 @@
+import { useRouter } from 'next/router';
+import UserLayout from '../../../src/app/components/other/UserLayout';
+import ListingInbox from '../../../src/pages/ListingInbox';
+
+export default function Page() {
+  const router = useRouter();
+  const { id } = router.query;
+  return <UserLayout authRequired={true}>{id && <ListingInbox id={id} />}</UserLayout>;
+}

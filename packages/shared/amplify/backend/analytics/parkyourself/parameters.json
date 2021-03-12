@@ -1,0 +1,21 @@
+{
+    "appName": "parkyourself",
+    "roleName": "pinpointLambdaRole43e5d728",
+    "cloudformationPolicyName": "cloudformationPolicy43e5d728",
+    "cloudWatchPolicyName": "cloudWatchPolicy43e5d728",
+    "pinpointPolicyName": "pinpointPolicy43e5d728",
+    "authPolicyName": "pinpoint_amplify_43e5d728",
+    "unauthPolicyName": "pinpoint_amplify_43e5d728",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

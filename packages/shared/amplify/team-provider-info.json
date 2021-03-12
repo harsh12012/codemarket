@@ -1,0 +1,27 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-parkyourself-dev-151403-authRole",
+            "UnauthRoleArn": "arn:aws:iam::865286859051:role/amplify-parkyourself-dev-151403-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::865286859051:role/amplify-parkyourself-dev-151403-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-parkyourself-dev-151403-deployment",
+            "UnauthRoleName": "amplify-parkyourself-dev-151403-unauthRole",
+            "StackName": "amplify-parkyourself-dev-151403",
+            "StackId": "arn:aws:cloudformation:us-east-1:865286859051:stack/amplify-parkyourself-dev-151403/ae8239b0-7104-11eb-8248-0af47575f89b",
+            "AmplifyAppId": "d1hf3zx8ktdr36"
+        },
+        "categories": {
+            "auth": {
+                "parkyourself30e274ad30e274ad": {}
+            },
+            "notifications": {
+                "Pinpoint": {
+                    "Name": "parkyourself-dev",
+                    "Id": "c8f60bb963054bc8a8ceb2bda77acb67",
+                    "Region": "us-east-1"
+                }
+            }
+        }
+    }
+}
