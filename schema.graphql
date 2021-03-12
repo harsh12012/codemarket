@@ -1,0 +1,1291 @@
+scalar Long
+
+type Query {
+  getStaff(listingId: ID!): [StaffPopulate]
+  getAllMessages(
+    user1Id: String!
+    user2Id: String!
+    limit: Int
+    page: Int
+  ): AllMessages
+  getInbox(userId: String!): [Inbox]
+  getOwnerInbox(ownerId: String!): [OwnerInbox]
+  getAllUsers(filter: String): [User]
+  getAllUsersSearch(
+    page: Int
+    limit: Int
+    status: String
+    search: String
+    lowerRange: String
+    higherRange: String
+    sortBy: String
+    listings: Int
+    bookings: Int
+    active: Boolean
+  ): UserSearch
+  getOneUserId(id: ID!): User
+  getOneUserSub(username: String!): User
+
+  getAllDemos(status: String, ref: ID): [Demo]
+  getOneDemo(id: ID!): Demo
+
+  getOneFee: Fee
+  getOnePolicy: Policy
+  getOneFormOption(id: ID!): FormOption
+  getAllFormOptions(filter: String): [FormOption]
+
+  setupPayout(listingId: String!, triggerTimer: String!): Boolean
+
+  checkBookingAvailability(
+    listingId: String!
+    start: AWSDateTime!
+    end: AWSDateTime!
+  ): [String]
+  stripeGetPaymentMethod(payment_method: String!): String
+  stripeGetPaymentReport(userId: String!): stripeGetPaymentReport
+  stripeDetachPaymentMethod(payment_method: String!): String
+  stripeListUserCards(driverId: String!, type: String!): String
+  stripeCreateSetupIntent(
+    driverId: String!
+    email: String!
+    name: String!
+    type: String!
+  ): String
+  stripeCreatePaymentIntentOffline(
+    payment_method: String!
+    driverId: String!
+    type: String!
+    ownerId: String!
+    amount: Float!
+    fee: Float
+  ): PaymentIntentResponse
+  stripeCreatePaymentIntent(
+    driverId: String!
+    type: String!
+    email: String!
+    name: String!
+    ownerId: String!
+    amount: Float!
+    fee: Float
+  ): PaymentIntentResponse
+  stripeCreateAccountLinks(
+    userId: String!
+    email: String!
+    type: String!
+    refresh_url: String!
+    return_url: String!
+  ): String
+  stripeRetrieveAccount(userId: String!): String
+  stripeCreateLoginLinkAccount(userId: String!): String
+  stripeRetrieveBalance(userId: String!): String
+
+  adminListAllUsers(
+    limit: Int!
+    paginationToken: String
+    filter: String
+  ): AllUsers
+  listUsersInGroup(groupName: String!): [CognitoGroupUser]
+  listCognitoUsersByEmail(email: String!): [CognitoGroupUser]
+
+  createCheckoutSession(
+    user: CheckoutUserInput
+    space: CheckoutSpaceInput
+    other: CheckoutOtherInput
+  ): String
+
+  getOneImageSlider(id: ID!): ImageSlider
+
+  getOneImageSliderBySlug(slug: String!, userId: String!): ImageSlider
+  getAllImageSliders: [ImageSlider]
+
+  getOneRoom(id: ID!): Room
+  getOneRoomBySlug(slug: String!, userId: String!): Room
+  getAllRooms: [Room]
+
+  getOneForm(id: ID!): Form
+  getOneFormBySlug(slug: String!, userId: String!): Form
+  getAllForms: [Form]
+
+  getOneFormSub(id: ID!): FormSub
+  getAllFormSubsByFormId(formId: String!): [FormSub]
+  getAllFormSubs: [FormSub]
+
+  getAllImages: [ImageUpload]
+  getAllEmails: [ScrapedEmail]
+
+  getListing(id: ID!): Listing
+  getAllListingsSearch(
+    search: String
+    limit: Int
+    page: Int
+    username: String
+    active: Boolean
+  ): ListingSearch
+  getPublishedListings: [Listing]
+  getOwnerListings(ownerId: String!): [Listing]
+  getPublishedListingsWithLatLng(lat: Float!, lng: Float!): [Listing]
+  getListingsWithBookings(
+    lat: Float!
+    lng: Float!
+    start: AWSDateTime!
+    end: AWSDateTime!
+    startDay: Int!
+    startHour: Int!
+    startMinute: Int!
+    endDay: Int!
+    endHour: Int!
+    endMinute: Int!
+  ): [Listing]
+
+  getBooking(id: String!): Booking
+  getAllBookings(filter: String): [Booking]
+  getAllBookingsSearch(
+    status: String!
+    search: String
+    limit: Int
+    page: Int
+    startDate: AWSDateTime
+    endDate: AWSDateTime
+    sortBy: String
+    driverId: String
+    ownerId: String
+    listingId: String
+    minAmount: Int
+    maxAmount: Int
+    minDuration: Long
+    maxDuration: Long
+  ): BookingSearch
+  getAllBookingsSearchByStaffType(
+    status: String!
+    search: String
+    limit: Int
+    page: Int
+    startDate: AWSDateTime
+    endDate: AWSDateTime
+    sortBy: String
+    username: String!
+  ): BookingSearchByStaffType
+  getBookingsWithListingId(listingId: String!): [Booking]
+  getBookingsWithOwnerId(ownerId: String!): [Booking]
+  getBookingsWithListingIdAndStatus(listingId: ID!, status: String!): [Booking]
+  getDriverBookings(driverId: String!): [Booking]
+  getOwnerBookings(ownerId: String!): [Booking]
+
+  getUserVehicles(userId: String!): [Vehicle]
+  getVehicle(id: ID!): Vehicle
+
+  getUserBusinessProfile(userId: String!): BusinessProfile
+  getBusinessProfiles: [BusinessProfile]
+
+  getUserSpaceOwnerProfile(userId: String!): SpaceOwnerProfile
+  getSpaceOwnerProfiles: [SpaceOwnerProfile]
+
+  getListingReviews(listingId: String!): [ListingReview]
+  getListingReviewsByDriverId(driverId: String!): [ListingReview]
+
+  getOwnerReviews(ownerId: String!): [OwnerReview]
+  getOwnerReviewsByDriverId(driverId: String!): [OwnerReview]
+
+  getPromoCode(id: String!): PromoCode
+  getPromoCodesByListingId(listingId: String!): [PromoCode]
+  checkPromoCode(code: String!, listingId: String!): checkPromoCode
+
+  getDistinctListingsFromMessages: [String]
+  getDriverOwnerMessagesByListingId(
+    listingId: String!
+    driverId: String!
+    ownerId: String!
+  ): [Message]
+  getDriverMessages(driverId: String!): [Message]
+  getOwnerMessages(ownerId: String!): [Message]
+  getListingMessages(listingId: String!): [Message]
+
+  getFaq(id: ID!): Faq
+  getAllFaqs: [Faq]
+  getFaqsByRole(role: String!): [Faq]
+  getFaqsByTopic(topic: String!): [Faq]
+  getAllFaqTopics: [FaqTopic]
+}
+
+type Mutation {
+  addStaff(listingId: ID!, staffId: String!, role: String!): StaffPopulate
+  updateStaffRole(
+    listingId: ID!
+    id: ID!
+    role: String!
+    createdAt: AWSDateTime
+  ): String
+  removeStaff(listingId: ID!, id: ID!): Boolean
+
+  sendOneMessage(
+    listingLocation: String!
+    senderId: String!
+    senderName: String!
+    receiverId: String!
+    receiverName: String!
+    message: String!
+  ): Message2
+
+  toggleOneUserStatus(
+    username: String!
+    updatedBy: String!
+    status: Boolean!
+  ): User
+  updateOneUser(
+    username: String!
+    updatedBy: String!
+    name: String
+    email: String
+    picture: String
+  ): User
+
+  addUserEndpoint(username: String!, endpoint: String!): Boolean
+  removeUserEndpoint(username: String!, endpoint: String!): Boolean
+
+  createOneDemo(name: String!, phone: Int!, createdBy: String!): Demo
+  updateOneDemo(id: ID!, name: String, phone: Int, updatedBy: String!): Demo
+  deleteOneDemo(id: ID!, updatedBy: String!): Boolean
+  updateOneFee(fee: Int!, updatedBy: String!): Fee
+  createOnePolicy(details: String!, createdBy: String!): Policy
+  updateOnePolicy(details: String!, updatedBy: String!): Policy
+  createOneFormOption(
+    title: String!
+    formName: String!
+    options: [FormOptionInput]
+    createdBy: String!
+  ): FormOption
+
+  updateOneFormOption(
+    id: ID!
+    title: String
+    formName: String
+    options: [FormOptionInput]
+    published: Boolean
+    updatedBy: String
+  ): FormOption
+  deleteOneFormOption(id: ID!): String
+
+  createGroup(groupName: String!): String
+  deleteGroup(groupName: String!): String
+  adminAddUserToGroup(groupName: String!, username: String!): String
+  adminRemoveUserFromGroup(groupName: String!, username: String!): String
+  adminUpdateUserAttributes(
+    username: String!
+    name: String!
+    value: String!
+  ): String
+  adminAddUserToGroupRole(
+    groupName: String!
+    username: String!
+    role: String!
+    email: String!
+  ): String
+  adminToggleUserStatus(username: String!, status: Boolean!): String
+
+  createOneImageSlider(
+    userId: String!
+    title: String!
+    slug: String!
+    images: [String]
+  ): ImageSlider
+  updateOneImageSlider(
+    id: ID!
+    title: String
+    slug: String
+    images: [String]
+    published: Boolean
+  ): ImageSlider
+  deleteOneImageSlider(id: ID!): String
+
+  createOneForm(
+    userId: String!
+    title: String!
+    slug: String!
+    formJSON: String!
+  ): Form
+  updateOneForm(
+    id: ID!
+    title: String
+    slug: String
+    formJSON: String
+    published: Boolean
+  ): Form
+  deleteOneForm(id: ID!): String
+
+  createOneFormSub(
+    formId: String!
+    formSlug: String!
+    data: String!
+    submitedBy: String!
+  ): FormSub
+
+  updateOneFormSub(
+    id: ID!
+    formId: String
+    formSlug: String
+    data: String
+  ): FormSub
+
+  deleteOneFormSub(id: ID!): String
+
+  createOneRoom(
+    userId: String!
+    title: String!
+    description: String!
+    slug: String!
+    price: Int!
+    images: [RoomImagesInput]
+    youtube: [String]
+  ): Room
+
+  updateOneRoom(
+    id: ID!
+    title: String
+    description: String
+    slug: String
+    price: Int
+    images: [RoomImagesInput]
+    youtube: [String]
+    published: Boolean
+  ): Room
+  deleteOneRoom(id: ID!): String
+
+  uploadImage(title: String, imageUrl: String): ImageUpload
+  createOneEmail(businessName: String, emails: [String]): ScrapedEmail
+  createEmailTemplate(
+    templateName: String
+    body: String
+    subject: String
+  ): String
+  sendTemplateEmail(
+    userId: String!
+    templateName: String!
+    businessName: String!
+    emails: [String]
+  ): TemplateEmail
+  sendEmail(
+    userId: String!
+    emails: [String]
+    subject: String!
+    message: String!
+  ): Email
+
+  createListing(
+    thumbnail: String
+    ownerId: String!
+    ownerName: String!
+    ownerEmail: String!
+    locationDetails: LocationDataInput
+    spaceDetails: SpaceDetailsDataInput
+    spaceAvailable: SpaceAvailableDataInput
+    pricingDetails: PricingDetailsDataInput
+    location: LocationDataMarkerInput
+    bookings: Int
+    createdAt: String
+  ): Listing
+  updateListing(
+    id: ID!
+    thumbnail: String
+    published: Boolean
+    locationDetails: LocationDataInput
+    spaceDetails: SpaceDetailsDataInput
+    spaceAvailable: SpaceAvailableDataInput
+    pricingDetails: PricingDetailsDataInput
+    location: LocationDataMarkerInput
+    createdAt: String
+  ): Listing
+  deleteListing(id: ID!): String
+
+  createBooking(
+    createdBy: String
+    driverId: String
+    driverName: String
+    driverEmail: String
+    listingId: String
+    ownerId: String
+    ownerName: String
+    ownerEmail: String
+    address: String
+    images: [String]
+    start: AWSDateTime
+    end: AWSDateTime
+    duration: Long!
+    status: String
+    profileCategory: String
+    vehicle: String
+    payment: Float
+    ownerPayment: Float
+    paymentMethod: String
+    createdAt: String
+    spaceLabel: String
+    paymentIntent: String
+    transferGroup: String
+  ): Booking
+  updateBooking(
+    id: ID!
+    address: String
+    images: [String]
+    start: AWSDateTime
+    end: AWSDateTime
+    duration: Long
+    status: String
+    profileCategory: String
+    vehicle: String
+    payment: Float
+    paymentMethod: String
+    createdAt: String
+    qrCode: String
+    spaceLabel: String
+  ): Booking
+  updateBookingStatus(
+    driverId: String
+    id: String!
+    status: String!
+    driverEmail: String!
+    ownerEmail: String!
+  ): Booking
+  deleteBooking(id: ID!): String
+
+  createVehicle(
+    userId: String
+    profileType: String
+    licensePlate: String
+    type: String
+    make: String
+    model: String
+    year: String
+    size: String
+    color: String
+    image: String
+    createdAt: String
+  ): Vehicle
+
+  updateVehicle(
+    id: ID!
+    userId: String
+    profileType: String
+    licensePlate: String
+    type: String
+    make: String
+    model: String
+    year: String
+    size: String
+    color: String
+    image: String
+    createdAt: String
+  ): Vehicle
+
+  deleteVehicle(id: ID!): String
+
+  createBusinessProfile(
+    userId: String!
+    businessName: String!
+    businessEmail: String!
+    businessMobile: String!
+    businessMobileCode: String!
+    createdAt: String
+  ): BusinessProfile
+
+  updateBusinessProfile(
+    id: ID!
+    userId: String
+    businessName: String
+    businessEmail: String
+    businessMobile: String
+    businessMobileCode: String
+    createdAt: String
+  ): BusinessProfile
+
+  deleteBusinessProfile(id: ID!): String
+
+  createSpaceOwnerProfile(
+    userId: String!
+    address: String!
+    businessName: String
+    facebook: String
+    twitter: String
+    instagram: String
+    createdAt: String
+  ): SpaceOwnerProfile
+
+  updateSpaceOwnerProfile(
+    id: ID!
+    userId: String
+    address: String
+    businessName: String
+    facebook: String
+    twitter: String
+    instagram: String
+    createdAt: String
+  ): SpaceOwnerProfile
+
+  deleteSpaceOwnerProfile(id: ID!): String
+
+  createListingReview(
+    listingId: String!
+    ownerName: String!
+    ownerId: String!
+    driverName: String!
+    driverId: String!
+    rating: Float!
+    feedback: String!
+    createdAt: String
+  ): ListingReview
+  updateListingReview(
+    id: ID!
+    listingId: String
+    ownerId: String
+    ownerName: String
+    driverId: String
+    driverName: String
+    rating: Float
+    feedback: String
+    createdAt: String
+  ): ListingReview
+  deleteListingReview(id: ID!): String
+
+  createOwnerReview(
+    ownerId: String!
+    ownerName: String!
+    driverId: String!
+    driverName: String!
+    rating: Float!
+    feedback: String!
+    createdAt: String
+  ): OwnerReview
+  updateOwnerReview(
+    id: ID!
+    ownerId: String
+    ownerName: String
+    driverId: String
+    driverName: String
+    rating: Float
+    feedback: String
+    createdAt: String
+  ): OwnerReview
+  deleteOwnerReview(id: ID!): String
+
+  createPromoCode(
+    code: String!
+    listingId: String!
+    discount: Float!
+    startDate: String!
+    endDate: String!
+    quantity: Int!
+    remaining: Int!
+  ): PromoCode
+  updatePromoCode(
+    id: ID!
+    code: String
+    discount: Float
+    startDate: String!
+    endDate: String!
+    quantity: Int!
+    remaining: Int!
+  ): PromoCode
+  deletePromoCode(id: ID!): String
+
+  createMessage(
+    body: String!
+    listingId: String!
+    listingAddress: String!
+    ownerId: String!
+    ownerName: String!
+    driverId: String!
+    driverName: String!
+    senderName: String!
+  ): Message
+
+  createFaq(
+    roles: [String!]!
+    topic: String!
+    question: String!
+    answer: String!
+  ): Faq
+  updateFaq(
+    id: ID!
+    roles: [String]
+    topic: String
+    question: String
+    answer: String
+  ): Faq
+  deleteFaq(id: ID!): String
+}
+
+type Subscription {
+  uploadedImage: ImageUpload @aws_subscribe(mutations: ["uploadImage"])
+  driverNewBooking(driverId: String): Booking
+    @aws_subscribe(mutations: ["createBooking"])
+  ownerNewBooking(ownerId: String): Booking
+    @aws_subscribe(mutations: ["createBooking"])
+  addMessage(listingId: String!, ownerId: String!, driverId: String!): Message
+    @aws_subscribe(mutations: ["createMessage"])
+  checkIn(driverId: String): Booking
+    @aws_subscribe(mutations: ["updateBookingStatus"])
+  bookingSub(driverId: String, ownerId: String, listingId: String): Booking
+    @aws_subscribe(mutations: ["updateBookingStatus"])
+  newBookingSub(driverId: String, ownerId: String, listingId: String): Booking
+    @aws_subscribe(mutations: ["createBooking"])
+  newMessageSub(receiverId: String, senderId: String): Message2
+    @aws_subscribe(mutations: ["sendOneMessage"])
+}
+
+type Inbox {
+  _id: String
+  lastMessage: Message2
+}
+
+type OwnerInbox {
+  _id: String
+  listingAddress: String
+  messageCount: Int!
+}
+
+type AllMessages {
+  count: Int!
+  messages: [Message2]
+}
+
+type Message2 {
+  _id: ID
+  listingLocation: String
+  senderId: String
+  senderName: String
+  receiverId: String
+  receiverName: String
+  message: String
+  createdAt: AWSDateTime
+}
+
+type UserSearch {
+  users: [User]
+  count: Int
+}
+type User {
+  _id: ID
+  username: String
+  name: String
+  email: String
+  picture: String
+  active: Boolean
+  status: String
+  listings: Int
+  bookings: Int
+  confirmed: Boolean
+  ref: ID
+  createdAt: String
+  createdBy: String
+  updatedAt: String
+  updatedBy: String
+}
+
+type Demo {
+  _id: ID
+  name: String
+  phone: Int
+  ref: ID
+  status: String
+  createdBy: String
+  createdAt: String
+  updatedAt: String
+  updatedBy: String
+}
+
+type Fee {
+  fee: Int
+  decimal: Float
+  createdAt: String
+  updatedAt: String
+  createdBy: String
+  updatedBy: String
+  published: Boolean
+}
+
+type Policy {
+  details: String
+  createdAt: String
+  updatedAt: String
+  createdBy: String
+  updatedBy: String
+  published: Boolean
+}
+
+type FormOption {
+  _id: ID
+  title: String
+  formName: String
+  options: [FormOptionO]
+  published: Boolean
+  createdBy: String
+  updatedBy: String
+  createdAt: String
+  updatedAt: String
+}
+
+input FormOptionInput {
+  label: String
+  value: String
+  published: Boolean
+}
+
+type FormOptionO {
+  label: String
+  value: String
+  published: Boolean
+}
+
+type AllUsers {
+  Users: [CognitoGroupUser]
+  PaginationToken: String
+}
+
+type CognitoGroupUser {
+  Username: String
+  Attributes: [CognitoGroupUserAttributes]
+  UserCreateDate: String
+  UserLastModifiedDate: String
+  Enabled: String
+  UserStatus: String
+}
+
+type CognitoGroupUserAttributes {
+  Name: String
+  Value: String
+}
+
+type PaymentIntentResponse {
+  id: String
+  secret: String
+  transferGroup: String
+}
+
+type Message {
+  _id: ID!
+  body: String!
+  listingId: String!
+  listingAddress: String!
+  ownerId: String!
+  ownerName: String!
+  driverId: String!
+  driverName: String!
+  senderName: String!
+  createdAt: String!
+}
+
+input CheckoutUserInput {
+  _id: String!
+  email: String!
+}
+
+input CheckoutSpaceInput {
+  _id: String!
+  ownerId: String!
+  image: String
+  name: String!
+  description: String!
+  price: Int!
+}
+
+input CheckoutOtherInput {
+  success_url: String!
+  cancel_url: String!
+}
+
+type Email {
+  _id: ID!
+  userId: String!
+  emails: [String]
+  subject: String!
+  message: String!
+}
+
+type TemplateEmail {
+  _id: ID!
+  userId: String!
+  businessName: String!
+  emails: [String]
+  templateName: String!
+}
+
+type ScrapedEmail {
+  _id: ID!
+  businessName: String!
+  emails: [String]
+}
+
+type ImageUpload {
+  _id: ID!
+  title: String
+  imageUrl: String
+}
+
+type Menu {
+  _id: ID!
+  slug: String!
+  title: String!
+  description: String!
+}
+
+type Book {
+  id: ID!
+  title: String
+}
+
+type Room {
+  _id: ID!
+  userId: String!
+  title: String!
+  description: String!
+  slug: String!
+  price: Int!
+  images: [RoomImages]
+  youtube: [String]
+  published: Boolean!
+}
+
+type RoomImages {
+  original: String
+  thumbnail: String
+}
+
+input RoomImagesInput {
+  original: String
+  thumbnail: String
+}
+
+type ImageSlider {
+  _id: ID!
+  userId: String!
+  title: String!
+  slug: String!
+  images: [String]
+  published: Boolean!
+}
+
+type Form {
+  _id: ID!
+  userId: String!
+  title: String!
+  formJSON: String!
+  slug: String!
+  published: Boolean!
+}
+
+type FormSub {
+  _id: ID!
+  formId: String!
+  formSlug: String!
+  data: String!
+  submitedBy: String!
+  submitedAt: String
+}
+
+type ListingSearch {
+  listings: [Listing]
+  count: Int
+}
+
+type Listing {
+  _id: ID!
+  thumbnail: String
+  ownerId: String!
+  ownerName: String!
+  ownerEmail: String!
+  published: Boolean!
+  locationDetails: LocationData!
+  spaceDetails: SpaceDetailsData!
+  spaceAvailable: SpaceAvailableData!
+  pricingDetails: PricingDetailsData!
+  location: LocationDataMarker!
+  bookings: Int
+  createdAt: String
+  bookingCount: [BookingCount]
+  ratingAverage: Float
+  ratingQuantity: Int
+  staff: [Staff]
+}
+
+type Staff {
+  _id: ID
+  user: ID
+  staffId: String
+  role: String
+  createdAt: AWSDateTime
+}
+
+type StaffPopulate {
+  _id: ID
+  user: User
+  staffId: String
+  role: String
+  createdAt: AWSDateTime
+}
+
+type BookingCount {
+  total: Int
+}
+
+type LocationDataMarker {
+  type: String!
+  coordinates: [Float]
+}
+
+input LocationDataMarkerInput {
+  type: String
+  coordinates: [Float]
+}
+
+type LocationData {
+  listingType: String
+  propertyType: String
+  propertyName: String
+  country: String
+  address: String
+  unitNum: String
+  city: String
+  state: String
+  postalCode: String
+  code: String
+  phone: String
+  marker: LocationDataMarker
+  streetViewImages: [String]
+  parkingEntranceImages: [String]
+  parkingSpaceImages: [String]
+  features: [String]
+}
+
+input LocationDataInput {
+  listingType: String
+  propertyType: String
+  propertyName: String
+  country: String
+  address: String
+  unitNum: String
+  city: String
+  state: String
+  postalCode: String
+  code: String
+  phone: String
+  marker: LocationDataMarkerInput
+  streetViewImages: [String]
+  parkingEntranceImages: [String]
+  parkingSpaceImages: [String]
+  features: [String]
+}
+
+type SpaceLabel {
+  label: String!
+  largestSize: String!
+  isBooked: Boolean
+}
+
+input SpaceLabelInput {
+  label: String!
+  largestSize: String!
+  isBooked: Boolean
+}
+
+type Height {
+  value: Int!
+  unit: String!
+}
+
+input HeightInput {
+  value: Int
+  unit: String!
+}
+
+type SpaceDetailsData {
+  parkingSpaceType: String
+  qtyOfSpaces: Int
+  heightRestriction: Boolean
+  height1: Height
+  height2: Height
+  sameSizeSpaces: Boolean
+  largestSize: String
+  motorcycle: Boolean
+  compact: Boolean
+  midsized: Boolean
+  large: Boolean
+  oversized: Boolean
+  motorcycleSpaces: Int
+  compactSpaces: Int
+  midsizedSpaces: Int
+  largeSpaces: Int
+  oversizedSpaces: Int
+  isLabelled: Boolean
+  spaceLabels: [SpaceLabel]
+  aboutSpace: String
+  accessInstructions: String
+}
+
+input SpaceDetailsDataInput {
+  parkingSpaceType: String
+  qtyOfSpaces: String
+  heightRestriction: Boolean
+  height1: HeightInput
+  height2: HeightInput
+  sameSizeSpaces: Boolean
+  largestSize: String
+  motorcycle: Boolean
+  compact: Boolean
+  midsized: Boolean
+  large: Boolean
+  oversized: Boolean
+  motorcycleSpaces: Int
+  compactSpaces: Int
+  midsizedSpaces: Int
+  largeSpaces: Int
+  oversizedSpaces: Int
+  isLabelled: Boolean
+  spaceLabels: [SpaceLabelInput]
+  aboutSpace: String
+  accessInstructions: String
+}
+
+type Day {
+  isActive: Boolean!
+  startHour: Int
+  startMinute: Int
+  endHour: Int
+  endMinute: Int
+}
+
+input DayInput {
+  isActive: Boolean!
+  startHour: Int
+  startMinute: Int
+  endHour: Int
+  endMinute: Int
+}
+
+type TimeDuration {
+  value: Long
+  unit: String!
+}
+
+input TimeDurationInput {
+  value: Long
+  unit: String
+}
+
+type CustomTimeRange {
+  startDate: AWSDateTime
+  endDate: AWSDateTime
+}
+
+input CustomTimeRangeInput {
+  startDate: AWSDateTime
+  endDate: AWSDateTime
+}
+
+type SpaceAvailableData {
+  monday: Day
+  tuesday: Day
+  wednesday: Day
+  thursday: Day
+  friday: Day
+  saturday: Day
+  sunday: Day
+  scheduleType: String
+  customTimeRange: [CustomTimeRange]
+  hasNoticeTime: Boolean
+  noticeTime: TimeDuration
+  advanceBookingTime: TimeDuration
+  minTime: TimeDuration
+  maxTime: TimeDuration
+  instantBooking: Boolean
+}
+
+input SpaceAvailableDataInput {
+  monday: DayInput
+  tuesday: DayInput
+  wednesday: DayInput
+  thursday: DayInput
+  friday: DayInput
+  saturday: DayInput
+  sunday: DayInput
+  scheduleType: String
+  customTimeRange: [CustomTimeRangeInput]
+  hasNoticeTime: Boolean
+  noticeTime: TimeDurationInput
+  advanceBookingTime: TimeDurationInput
+  minTime: TimeDurationInput
+  maxTime: TimeDurationInput
+  instantBooking: Boolean
+}
+
+type PricingRates {
+  perHourRate: Float
+  perDayRate: Float
+  perWeekRate: Float
+  perMonthRate: Float
+}
+
+input PricingRatesInput {
+  perHourRate: Float
+  perDayRate: Float
+  perWeekRate: Float
+  perMonthRate: Float
+}
+
+type PricingDetailsData {
+  pricingType: String
+  pricingRates: PricingRates
+}
+
+input PricingDetailsDataInput {
+  pricingType: String
+  pricingRates: PricingRatesInput
+}
+
+type Booking {
+  _id: ID!
+  createdBy: String
+  driverId: String
+  driverName: String
+  driverEmail: String
+  listingId: String
+  ownerId: String
+  ownerName: String
+  ownerEmail: String
+  address: String
+  images: [String]
+  start: AWSDateTime
+  end: AWSDateTime
+  status: String
+  profileCategory: String
+  vehicle: String
+  payment: Float
+  ownerPayment: Float
+  paymentMethod: String
+  createdAt: String
+  qrCode: String
+  spaceLabel: String
+}
+
+type BookingSearch {
+  bookings: [Booking]
+  count: Int
+}
+
+type BookingSearchByStaffType {
+  bookings: [Booking]
+  count: Int
+}
+
+type CardDetails {
+  number: String!
+  expiry: String!
+  nameOnCard: String!
+  setDefault: Boolean!
+}
+
+input CardDetailsInput {
+  number: String!
+  expiry: String!
+  nameOnCard: String!
+  setDefault: Boolean!
+}
+
+type Vehicle {
+  _id: ID!
+  userId: String!
+  profileType: String!
+  licensePlate: String!
+  type: String!
+  make: String!
+  model: String!
+  year: String!
+  size: String!
+  color: String
+  image: String
+  createdAt: String
+}
+
+type BusinessProfile {
+  _id: ID!
+  userId: String!
+  businessName: String!
+  businessEmail: String!
+  businessMobile: String!
+  businessMobileCode: String!
+  createdAt: String
+}
+
+type SpaceOwnerProfile {
+  _id: ID!
+  userId: String!
+  address: String!
+  businessName: String
+  facebook: String
+  twitter: String
+  instagram: String
+  createdAt: String
+}
+
+type ListingReview {
+  _id: ID!
+  listingId: String
+  ownerId: String
+  ownerName: String
+  driverName: String
+  driverId: String
+  rating: Float
+  feedback: String
+  createdAt: String
+}
+
+type OwnerReview {
+  _id: ID!
+  ownerId: String
+  ownerName: String
+  driverName: String
+  driverId: String
+  rating: Float
+  feedback: String
+  createdAt: String
+}
+
+type PromoCode {
+  _id: ID!
+  code: String
+  listingId: String
+  createdAt: String
+  discount: Float
+  quantity: Int
+  remaining: Int
+  startDate: String
+  endDate: String
+}
+type checkPromoCode {
+  isValid: Boolean
+  discount: Float
+  id: String
+}
+
+type Faq {
+  _id: ID!
+  roles: [String]
+  topic: String
+  question: String
+  answer: String
+  createdAt: String
+}
+
+type FaqTopic {
+  _id: ID
+  topic: String
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type stripeGetPaymentReport {
+  totalEarnings: Int
+  lastMonthEarnings: Int
+  availableForWithdrawal: String
+}

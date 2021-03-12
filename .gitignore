@@ -1,0 +1,9 @@
+## package directories
+node_modules
+test
+/.dynamodb
+/.serverless
+test.js
+.DS_Store
+config.yml
+test.js

@@ -1,0 +1,46 @@
+service: ${opt:SERVICE_NAME, 'parkyourself-backend'}
+
+plugins:
+  - serverless-prune-plugin
+  - serverless-appsync-plugin
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs12.x
+  timeout: 15
+  stage: ${opt:stage, 'dev'}
+  role: 'arn:aws:iam::865286859051:role/backend-lambda-role'
+
+  environment:
+    SENDER_EMAIL: ${ssm:/parkyourself/sender/email}
+    REGION: '${self:provider.region}'
+    STAGE: '${self:provider.stage}'
+    DATABASE: 'mongodb+srv://${opt:MONGO_USERNAME}:${opt:MONGO_PASSWORD}@codemarket-staging.k16z7.mongodb.net/parkyourself?retryWrites=true&w=majority'
+    STRIPE_SECRET: ${ssm:/parkyourself/stripe/test/secret}
+    USER_POOL_ID: ${ssm:/parkyourself/userpool}
+    FEE_ID: ${ssm:/parkyourself/fee}
+    POLICY_ID: ${ssm:/parkyourself/policy}
+    TAX_ACCOUNT: ${ssm:/parkyourself/tax/account}
+    PINPOINT_APP_ID: ${ssm:/parkyourself/pinpoint/appId}
+
+custom:
+  appSync: # appsync plugin configuration
+    name: ${self:service}
+    authenticationType: API_KEY
+    serviceRole: 'AppSyncServiceRole'
+    dataSources: ${file(resources/data-sources.yml)}
+    mappingTemplates: ${file(resources/resolvers.yml)}
+  appsync-offline: # appsync-offline configuration
+    port: 3030
+  defaultPrefix: ${self:service}-${self:provider.stage}
+  prune:
+    automatic: true
+    number: 3
+
+functions:
+  - ${file(resources/lambda-functions.yml)}
+
+resources:
+  # Roles
+  - ${file(resources/roles.yml)}

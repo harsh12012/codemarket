@@ -1,0 +1,92 @@
+- type: AWS_LAMBDA
+  name: demo
+  config:
+    functionName: demo
+# - type: AWS_LAMBDA
+#   name: menu
+#   config:
+#     functionName: menu_lambda
+- type: AWS_LAMBDA
+  name: email
+  config:
+    functionName: email_lambda
+# - type: AWS_LAMBDA
+#   name: room
+#   config:
+#     functionName: room_lambda
+# - type: AWS_LAMBDA
+#   name: form
+#   config:
+#     functionName: form_lambda
+# - type: AWS_LAMBDA
+#   name: imageSlider
+#   config:
+#     functionName: imageSlider_lambda
+- type: AWS_LAMBDA
+  name: listing
+  config:
+    functionName: listing_lambda
+- type: AWS_LAMBDA
+  name: booking
+  config:
+    functionName: booking_lambda
+- type: AWS_LAMBDA
+  name: payment
+  config:
+    functionName: payment_lambda
+- type: AWS_LAMBDA
+  name: message
+  config:
+    functionName: message_lambda
+- type: AWS_LAMBDA
+  name: common
+  config:
+    functionName: common_lambda
+- type: AWS_LAMBDA
+  name: vehicle
+  config:
+    functionName: vehicle_lambda
+- type: AWS_LAMBDA
+  name: businessProfile
+  config:
+    functionName: businessProfile_lambda
+- type: AWS_LAMBDA
+  name: spaceOwnerProfile
+  config:
+    functionName: spaceOwnerProfile_lambda
+- type: AWS_LAMBDA
+  name: listingReview
+  config:
+    functionName: listingReview_lambda
+- type: AWS_LAMBDA
+  name: ownerReview
+  config:
+    functionName: ownerReview_lambda
+- type: AWS_LAMBDA
+  name: promoCode
+  config:
+    functionName: promoCode_lambda
+- type: AWS_LAMBDA
+  name: faq
+  config:
+    functionName: faq_lambda
+- type: AWS_LAMBDA
+  name: formOption
+  config:
+    functionName: formOption_lambda
+- type: AWS_LAMBDA
+  name: fee
+  config:
+    functionName: fee_lambda
+- type: AWS_LAMBDA
+  name: fee2
+  config:
+    functionName: fee2_lambda
+- type: AWS_LAMBDA
+  name: user
+  config:
+    functionName: user_lambda
+- type: AWS_LAMBDA
+  name: policy
+  config:
+    functionName: policy_lambda

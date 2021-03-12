@@ -1,0 +1,54 @@
+demo:
+  handler: lambda-functions/demo_lambda/index.handler
+#   package:
+#     include:
+#       - "!**"
+#       - lambda-functions/demo_lambda/**
+# menu_lambda:
+#   handler: lambda-functions/menu_lambda/index.handler
+email_lambda:
+  handler: lambda-functions/email_lambda/index.handler
+# room_lambda:
+#   handler: lambda-functions/room_lambda/index.handler
+# form_lambda:
+#   handler: lambda-functions/form_lambda/index.handler
+# imageSlider_lambda:
+#   handler: lambda-functions/imageSlider_lambda/index.handler
+listing_lambda:
+  handler: lambda-functions/listing_lambda/index.handler
+booking_lambda:
+  handler: lambda-functions/booking_lambda/index.handler
+payment_lambda:
+  handler: lambda-functions/payment_lambda/index.handler
+message_lambda:
+  handler: lambda-functions/message_lambda/index.handler
+common_lambda:
+  handler: lambda-functions/common_lambda/index.handler
+vehicle_lambda:
+  handler: lambda-functions/vehicle_lambda/index.handler
+businessProfile_lambda:
+  handler: lambda-functions/businessProfile_lambda/index.handler
+spaceOwnerProfile_lambda:
+  handler: lambda-functions/spaceOwnerProfile_lambda/index.handler
+listingReview_lambda:
+  handler: lambda-functions/listingReview_lambda/index.handler
+ownerReview_lambda:
+  handler: lambda-functions/ownerReview_lambda/index.handler
+promoCode_lambda:
+  handler: lambda-functions/promoCode_lambda/index.handler
+faq_lambda:
+  handler: lambda-functions/faq_lambda/index.handler
+formOption_lambda:
+  handler: lambda-functions/formOption_lambda/index.handler
+fee_lambda:
+  handler: lambda-functions/fee_lambda/index.handler
+fee2_lambda:
+  handler: lambda-functions/fee2_lambda/index.handler
+user_lambda:
+  handler: lambda-functions/user_lambda/index.handler
+signup_lambda:
+  handler: lambda-functions/user_lambda/signup.handler
+postConfirmation_lambda:
+  handler: lambda-functions/user_lambda/postConfirmation.handler
+policy_lambda:
+  handler: lambda-functions/policy_lambda/index.handler

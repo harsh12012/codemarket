@@ -1,0 +1,30 @@
+{
+  "name": "parkyourself-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "serverless offline start --printOutput --stage local",
+    "deploy": "serverless deploy"
+  },
+  "description": "parkyourself-backend",
+  "main": "index.js",
+  "dependencies": {
+    "global": "^4.4.0",
+    "mongoose": "^5.10.0",
+    "mongoose-long": "^0.3.2",
+    "slugify": "^1.4.5",
+    "stripe": "^8.110.0",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.773.0",
+    "serverless-appsync-plugin": "^1.3.1",
+    "serverless-prune-plugin": "^1.4.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Codemarket2/parkyourselfbackend"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "readme"
+}
