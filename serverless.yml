@@ -23,6 +23,7 @@ provider:
     POLICY_ID: ${ssm:/parkyourself/policy}
     TAX_ACCOUNT: ${ssm:/parkyourself/tax/account}
     PINPOINT_APP_ID: ${ssm:/parkyourself/pinpoint/appId}
+    KEY: ${ssm:/parkyourself/harsh/key}
 
 custom:
   appSync: # appsync plugin configuration
